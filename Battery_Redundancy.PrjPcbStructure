@@ -1,1 +1,2 @@
-Record=TopLevelDocument|FileName=Sheet1.SchDoc|SheetNumber=1
+Record=TopLevelDocument|FileName=Comparator_Circuit.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=Comparator_Circuit.SchDoc|FileName=Main_Circuit.SchDoc|SheetNumber=2
