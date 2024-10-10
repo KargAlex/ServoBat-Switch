@@ -1,0 +1,511 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11-Oct-24</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12:22:11 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\Github\ServoBat-Switch\PCB1.PcbDoc" class="file"><acronym title="D:\Github\ServoBat-Switch\PCB1.PcbDoc">D:\Github\ServoBat-Switch\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">24</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Waived Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">18</td></tr>
+</table>
+</td>
+</table><a name="IDP1UYZOH3CJFMGPNNQKRXPSTPZFTOO32ZWRFRRQJDUR2RRRI0DBYJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4TSR5KF1KARDDJ0HQ5UX1U24TDOU1V1CG45SE3IKEK112AL1YPWM">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMNBRNJ2BNFKAPZLA2TIUKND0NK10EHTTR3X24XF0DU4I0GPYHIFL">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3SRMXC15CB3ZESSTF02TJEFJCIMAEY0IKYUNW5J3G4ZXHS25Y2E">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3GMFT02IZ5LDNT3J3A4A0R2D3EVPI11ENOL4F4H11NBJNZB3XTKO">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDE33TFQRV24QULIKHTSAX2H22KCVZG2QKRD3ZB5CK3K34GZBVD0KE">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1WFRRLRXGPR3BIRECPV23MKPHGNN1XQUKPLQ2ZL3WFF0SFBNIACP">Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJP0NAQ14BICKHP4V225314VVYCAQUYSPRMVUFBJM5IMAE0RC3WGH">Width Constraint (Min=0.254mm) (Max=54mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDXNERORC4STBEHZCGX0IYCJXANVT4TII3Q1OXYELYPA0LPFNTHYL">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTWYYTDPLRB14KX1XDYA5CQH4UJX34XJJF51NXZL2PXP0AYIRDXXM">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDL2340AWUP4GFKMZRMMCIGCG4EK3VV2TUR3F1ZGGDOMCJSQGZLJUN">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHAEMQFFSK5LEUNMGSG2U3L0OI4CRP1WZQJUU1NP3TSDH1L4IQVH">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMWN514YGBQKIEJJNEU10IPIOF2J3PEITZAPKNO4ZCHCTFTORGCE">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPO4O4PC1IJEBKFICQALHBOWPODN552CCQ03CYYGGI4PE04WWPJAH">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">24</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD5MQHZTXTTJ4OXQNRLHZXMXGPNFKSFBTYL5IUWGVTN1QUPEMO5VK">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJCEYQK4XKNDIHMWS5TXBNZ0QHUR1WX1OTMPI5CS414LUWJE4NBH">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNBMYXF3132EHOE13DP41WR1QRKL3WEAA0QOWKPIZDOL3TVSTREJD">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">24</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Waived Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0I1OIK33OR5YIWR3P0DTVCZSPLQH55PP3J52RSK4IBZA5EFOZACH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBN4WZNMNFJGXD42PTFHR4DWXQLQKEBB3QBPZQLDEM5AY4BDWH0KC">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCMKWN51FOIEFNF4TDET1M344KPTU1QMVCK31N5OFEQAWFF5LOHYK">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVWJETLFNTAD4MOXN4A2XKUY5DMYF0INCKGZ4EIDCTNVPTYERAJAO">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">18</td>
+</tr>
+</table><br><a name="ID5IDV0QAF25WQEJTGN3NU1XURNKB2OJORWFLC1OULC3OLRDON5AO"><h2>Rule Violations</h2></a><a name="IDPO4O4PC1IJEBKFICQALHBOWPODN552CCQ03CYYGGI4PE04WWPJAH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.375mil|Location2.X=3127.625mil|Location1.Y=3753.627mil|Location2.Y=3764.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.375mil|Location2.X=3127.625mil|Location1.Y=3753.627mil|Location2.Y=3764.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q1-1(79.934mm,95.885mm) on Top Layer And Track (74.179mm,95.34mm)(80.069mm,95.34mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.493mil|Location2.X=2957.743mil|Location1.Y=3753.617mil|Location2.Y=3764.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.493mil|Location2.X=2957.743mil|Location1.Y=3753.617mil|Location2.Y=3764.867mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q1-10(74.824mm,95.707mm) on Top Layer And Track (74.179mm,95.34mm)(80.069mm,95.34mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.895mil|Location2.X=2945.145mil|Location1.Y=3935.133mil|Location2.Y=3946.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.895mil|Location2.X=2945.145mil|Location1.Y=3935.133mil|Location2.Y=3946.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q1-11(74.824mm,99.873mm) on Top Layer And Track (74.179mm,100.24mm)(80.069mm,100.24mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.375mil|Location2.X=3127.625mil|Location1.Y=3935.123mil|Location2.Y=3946.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.375mil|Location2.X=3127.625mil|Location1.Y=3935.123mil|Location2.Y=3946.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q1-4(79.934mm,99.695mm) on Top Layer And Track (74.179mm,100.24mm)(80.069mm,100.24mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.092mil|Location2.X=2945.342mil|Location1.Y=3935.123mil|Location2.Y=3946.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.092mil|Location2.X=2945.342mil|Location1.Y=3935.123mil|Location2.Y=3946.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q1-5(74.314mm,99.695mm) on Top Layer And Track (74.179mm,100.24mm)(80.069mm,100.24mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.092mil|Location2.X=2945.342mil|Location1.Y=3753.627mil|Location2.Y=3764.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.092mil|Location2.X=2945.342mil|Location1.Y=3753.627mil|Location2.Y=3764.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q1-8(74.314mm,95.885mm) on Top Layer And Track (74.179mm,95.34mm)(80.069mm,95.34mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=3934.123mil|Location2.Y=3945.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=3934.123mil|Location2.Y=3945.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q2-1(84.201mm,99.67mm) on Top Layer And Track (84.066mm,100.215mm)(89.956mm,100.215mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.257mil|Location2.X=3515.507mil|Location1.Y=3934.133mil|Location2.Y=3945.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.257mil|Location2.X=3515.507mil|Location1.Y=3934.133mil|Location2.Y=3945.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q2-10(89.311mm,99.848mm) on Top Layer And Track (84.066mm,100.215mm)(89.956mm,100.215mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.855mil|Location2.X=3528.105mil|Location1.Y=3752.617mil|Location2.Y=3763.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.855mil|Location2.X=3528.105mil|Location1.Y=3752.617mil|Location2.Y=3763.867mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q2-11(89.311mm,95.682mm) on Top Layer And Track (84.066mm,95.315mm)(89.956mm,95.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=3752.627mil|Location2.Y=3763.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=3752.627mil|Location2.Y=3763.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q2-4(84.201mm,95.86mm) on Top Layer And Track (84.066mm,95.315mm)(89.956mm,95.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=3752.627mil|Location2.Y=3763.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=3752.627mil|Location2.Y=3763.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q2-5(89.821mm,95.86mm) on Top Layer And Track (84.066mm,95.315mm)(89.956mm,95.315mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=3934.123mil|Location2.Y=3945.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=3934.123mil|Location2.Y=3945.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q2-8(89.821mm,99.67mm) on Top Layer And Track (84.066mm,100.215mm)(89.956mm,100.215mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.383mil|Location2.X=3127.633mil|Location1.Y=2054.627mil|Location2.Y=2065.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.383mil|Location2.X=3127.633mil|Location1.Y=2054.627mil|Location2.Y=2065.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q3-1(79.934mm,52.73mm) on Top Layer And Track (74.179mm,52.185mm)(80.069mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.501mil|Location2.X=2957.751mil|Location1.Y=2054.617mil|Location2.Y=2065.867mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2946.501mil|Location2.X=2957.751mil|Location1.Y=2054.617mil|Location2.Y=2065.867mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q3-10(74.824mm,52.552mm) on Top Layer And Track (74.179mm,52.185mm)(80.069mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.903mil|Location2.X=2945.153mil|Location1.Y=2236.133mil|Location2.Y=2247.383mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.903mil|Location2.X=2945.153mil|Location1.Y=2236.133mil|Location2.Y=2247.383mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q3-11(74.824mm,56.718mm) on Top Layer And Track (74.179mm,57.085mm)(80.069mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.383mil|Location2.X=3127.633mil|Location1.Y=2236.123mil|Location2.Y=2247.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3116.383mil|Location2.X=3127.633mil|Location1.Y=2236.123mil|Location2.Y=2247.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q3-4(79.934mm,56.54mm) on Top Layer And Track (74.179mm,57.085mm)(80.069mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.099mil|Location2.X=2945.349mil|Location1.Y=2236.123mil|Location2.Y=2247.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.099mil|Location2.X=2945.349mil|Location1.Y=2236.123mil|Location2.Y=2247.373mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q3-5(74.314mm,56.54mm) on Top Layer And Track (74.179mm,57.085mm)(80.069mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.099mil|Location2.X=2945.349mil|Location1.Y=2054.627mil|Location2.Y=2065.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2934.099mil|Location2.X=2945.349mil|Location1.Y=2054.627mil|Location2.Y=2065.877mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q3-8(74.314mm,52.73mm) on Top Layer And Track (74.179mm,52.185mm)(80.069mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=2236.107mil|Location2.Y=2247.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=2236.107mil|Location2.Y=2247.357mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q4-1(84.201mm,56.54mm) on Top Layer And Track (84.066mm,57.085mm)(89.956mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.257mil|Location2.X=3515.507mil|Location1.Y=2236.117mil|Location2.Y=2247.367mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3504.257mil|Location2.X=3515.507mil|Location1.Y=2236.117mil|Location2.Y=2247.367mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q4-10(89.311mm,56.718mm) on Top Layer And Track (84.066mm,57.085mm)(89.956mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.855mil|Location2.X=3528.105mil|Location1.Y=2054.601mil|Location2.Y=2065.851mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.855mil|Location2.X=3528.105mil|Location1.Y=2054.601mil|Location2.Y=2065.851mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.189mm &lt; 0.254mm) Between Pad Q4-11(89.311mm,52.552mm) on Top Layer And Track (84.066mm,52.185mm)(89.956mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=2054.611mil|Location2.Y=2065.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3334.375mil|Location2.X=3345.625mil|Location1.Y=2054.611mil|Location2.Y=2065.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q4-4(84.201mm,52.73mm) on Top Layer And Track (84.066mm,52.185mm)(89.956mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=2054.611mil|Location2.Y=2065.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=2054.611mil|Location2.Y=2065.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q4-5(89.821mm,52.73mm) on Top Layer And Track (84.066mm,52.185mm)(89.956mm,52.185mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=2236.107mil|Location2.Y=2247.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.658mil|Location2.X=3527.908mil|Location1.Y=2236.107mil|Location2.Y=2247.357mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.19mm &lt; 0.254mm) Between Pad Q4-8(89.821mm,56.54mm) on Top Layer And Track (84.066mm,57.085mm)(89.956mm,57.085mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.19mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID3X5KFOYGZEZHJYKWRV0ZLMKR0N2PHGOV4HK1KYJTIRPG2A3GV1GN"><h2>Waived Violations</h2></a><a name="ID0I1OIK33OR5YIWR3P0DTVCZSPLQH55PP3J52RSK4IBZA5EFOZACH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.871mil|Location2.X=3528.892mil|Location1.Y=2226.472mil|Location2.Y=2239.493mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.871mil|Location2.X=3528.892mil|Location1.Y=2226.472mil|Location2.Y=2239.493mil|Absolute=True">Short-Circuit Constraint: Between Pad Q4-10(89.311mm,56.718mm) on Top Layer And Pad Q4-8(89.821mm,56.54mm) on Top Layer Location : [X = 89.468mm][Y = 56.718mm]</acronym></a><br>Waived by Kargalex at 11-Oct-24 12:17:20 AM<br>Is part of transistor connection</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.871mil|Location2.X=3528.892mil|Location1.Y=2062.476mil|Location2.Y=2075.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3515.871mil|Location2.X=3528.892mil|Location1.Y=2062.476mil|Location2.Y=2075.497mil|Absolute=True">Short-Circuit Constraint: Between Pad Q4-11(89.311mm,52.552mm) on Top Layer And Pad Q4-5(89.821mm,52.73mm) on Top Layer Location : [X = 89.468mm][Y = 52.552mm]</acronym></a><br>Waived by Kargalex at 11-Oct-24 12:17:20 AM<br>Is part of transistor connection</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDBN4WZNMNFJGXD42PTFHR4DWXQLQKEBB3QBPZQLDEM5AY4BDWH0KC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118mil|Location2.X=3176mil|Location1.Y=3758.992mil|Location2.Y=3841.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118mil|Location2.X=3176mil|Location1.Y=3758.992mil|Location2.Y=3841.008mil|Absolute=True">Un-Routed Net Constraint: Net NetQ1_1 Between Pad Q1-1(79.934mm,95.885mm) on Top Layer [Unplated] And Pad Q1-2(79.934mm,97.155mm) on Top Layer [Unplated] </acronym></a><br>Waived by  at 11-Oct-24 12:18:13 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3286mil|Location2.X=3344mil|Location1.Y=3857.992mil|Location2.Y=3940.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3286mil|Location2.X=3344mil|Location1.Y=3857.992mil|Location2.Y=3940.008mil|Absolute=True">Un-Routed Net Constraint: Net NetQ1_1 Between Pad Q2-2(84.201mm,98.4mm) on Top Layer [Unplated] And Pad Q2-1(84.201mm,99.67mm) on Top Layer [Unplated] </acronym></a><br>Waived by  at 11-Oct-24 12:18:13 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.008mil|Location2.X=3176.008mil|Location1.Y=2059.992mil|Location2.Y=2142.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.008mil|Location2.X=3176.008mil|Location1.Y=2059.992mil|Location2.Y=2142.008mil|Absolute=True">Un-Routed Net Constraint: Net NetQ3_1 Between Pad Q3-1(79.934mm,52.73mm) on Top Layer [Unplated] And Pad Q3-2(79.934mm,54mm) on Top Layer [Unplated] </acronym></a><br>Waived by  at 11-Oct-24 12:18:13 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.008mil|Location2.X=3176.008mil|Location1.Y=2109.992mil|Location2.Y=2192.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3118.008mil|Location2.X=3176.008mil|Location1.Y=2109.992mil|Location2.Y=2192.008mil|Absolute=True">Un-Routed Net Constraint: Net NetQ3_1 Between Pad Q3-2(79.934mm,54mm) on Top Layer [Unplated] And Pad Q3-3(79.934mm,55.27mm) on Top Layer [Unplated] </acronym></a><br>Waived by  at 11-Oct-24 12:18:13 AM<br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCMKWN51FOIEFNF4TDET1M344KPTU1QMVCK31N5OFEQAWFF5LOHYK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2921.375mil|Location2.X=2932.625mil|Location1.Y=3226.284mil|Location2.Y=3237.534mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2921.375mil|Location2.X=2932.625mil|Location1.Y=3226.284mil|Location2.Y=3237.534mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.193mm &lt; 0.254mm) Between Pad R1-1(73.87mm,82.448mm) on Top Layer And Pad R1-2(74.822mm,82.448mm) on Top Layer [Top Solder] Mask Sliver [0.193mm]</acronym></a><br>Waived by  at 11-Oct-24 12:19:39 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3359.784mil|Location2.Y=3371.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3359.784mil|Location2.Y=3371.034mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-1(82.529mm,85.156mm) on Top Layer And Pad U1-2(82.529mm,85.806mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:19:45 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3385.375mil|Location2.Y=3396.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3385.375mil|Location2.Y=3396.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-2(82.529mm,85.806mm) on Top Layer And Pad U1-3(82.529mm,86.456mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:19:49 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3410.965mil|Location2.Y=3422.215mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3215.969mil|Location2.X=3227.219mil|Location1.Y=3410.965mil|Location2.Y=3422.215mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-3(82.529mm,86.456mm) on Top Layer And Pad U1-4(82.529mm,87.106mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:19:58 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3410.965mil|Location2.Y=3422.215mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3410.965mil|Location2.Y=3422.215mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-5(76.729mm,87.106mm) on Top Layer And Pad U1-6(76.729mm,86.456mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:20:17 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3385.375mil|Location2.Y=3396.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3385.375mil|Location2.Y=3396.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-6(76.729mm,86.456mm) on Top Layer And Pad U1-7(76.729mm,85.806mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:20:17 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3359.784mil|Location2.Y=3371.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.781mil|Location2.X=3054.031mil|Location1.Y=3359.784mil|Location2.Y=3371.034mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-7(76.729mm,85.806mm) on Top Layer And Pad U1-8(76.729mm,85.156mm) on Top Layer [Top Solder] Mask Sliver [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:20:17 AM<br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDVWJETLFNTAD4MOXN4A2XKUY5DMYF0INCKGZ4EIDCTNVPTYERAJAO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="waived">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3397.038mil|Location2.X=3408.288mil|Location1.Y=3561.777mil|Location2.Y=3573.027mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3397.038mil|Location2.X=3408.288mil|Location1.Y=3561.777mil|Location2.Y=3573.027mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Arc (86.053mm,90.612mm) on Top Overlay And Pad U2-1(87.023mm,90.612mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.25mm]</acronym></a><br>Waived by  at 11-Oct-24 12:22:01 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.796mil|Location2.X=3555.046mil|Location1.Y=4029.823mil|Location2.Y=4041.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.796mil|Location2.X=3555.046mil|Location1.Y=4029.823mil|Location2.Y=4041.073mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C6-1(91.084mm,101.648mm) on Top Layer And Track (90.155mm,102.7mm)(90.155mm,103.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:21:48 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.954mil|Location2.X=3628.204mil|Location1.Y=4029.823mil|Location2.Y=4041.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.954mil|Location2.X=3628.204mil|Location1.Y=4029.823mil|Location2.Y=4041.073mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C6-1(91.084mm,101.648mm) on Top Layer And Track (92.014mm,102.7mm)(92.014mm,103.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:22:01 AM<br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.796mil|Location2.X=3555.046mil|Location1.Y=4078.927mil|Location2.Y=4090.177mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3543.796mil|Location2.X=3555.046mil|Location1.Y=4078.927mil|Location2.Y=4090.177mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C6-2(91.084mm,104.6mm) on Top Layer And Track (90.155mm,102.7mm)(90.155mm,103.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:22:01 AM<br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.954mil|Location2.X=3628.204mil|Location1.Y=4078.927mil|Location2.Y=4090.177mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Github\ServoBat-Switch\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3616.954mil|Location2.X=3628.204mil|Location1.Y=4078.927mil|Location2.Y=4090.177mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C6-2(91.084mm,104.6mm) on Top Layer And Track (92.014mm,102.7mm)(92.014mm,103.548mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br>Waived by  at 11-Oct-24 12:22:01 AM<br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
