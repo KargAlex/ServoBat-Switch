@@ -3,8 +3,8 @@ UNITS=MM
 #
 #Feature symbol names
 #
-$0 shape3a473a5e
-$1 shape6e14f442
+$0 rect20000.00064x13999.99994
+$1 rect20000.00064x39999.99874
 
 #
 #Feature attribute names
@@ -15,12 +15,12 @@ $1 shape6e14f442
 #
 #Feature attribute text strings
 #
-&0 SMD_ShapeX33959.8000Y61976.0000
-&1 SMD_ShapeX40411.4000Y26416.0000
+&0 SMD_RectX20000.0006Y13999.9999
+&1 SMD_RectX20000.0006Y39999.9987
 
 #
 #Layer features
 #
-P 48.387 54.6608 1 P 0 0 ;0=1,1=0
-P 48.387 97.8408 1 P 0 0 ;0=1,1=0
-P 105.1306 79.121 0 P 0 0 ;0=0,1=0
+P 61.37900094 66.00199906 0 P 0 0 ;0=0,1=0
+P 61.53200038 97.79 0 P 0 0 ;0=0,1=0
+P 102.34900028 81.55900122 1 P 0 0 ;0=1,1=0
